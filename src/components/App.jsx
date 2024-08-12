@@ -10,7 +10,8 @@ function App() {
   const [searchText, setSearchText] = useState("");
 
   const navigate = useNavigate();
-
+  const apiUrl = import.meta.env.VITE_API_URL;
+  console.log(movies);
   // Searchbar Functionality:
 
   const filteredMovies = movies.filter((movie) => {
@@ -28,7 +29,7 @@ function App() {
   // Movie data and functions start here:
 
   useEffect(() => {
-    fetch("/movies").then((res) => {
+    fetch(`${apiUrl}/movies`).then((res) => {
       if (res.ok) {
         res.json().then((movieData) => setMovies(movieData));
       }
@@ -36,7 +37,7 @@ function App() {
   }, [user]);
 
   function addMovie(movieData) {
-    fetch("/movies", {
+    fetch(`${apiUrl}/movies`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +58,7 @@ function App() {
   }
 
   function updateMovie(id, updatedMovie) {
-    fetch(`/movies/${id}`, {
+    fetch(`${apiUrl}/movies/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +86,7 @@ function App() {
   }
 
   function deleteMovie(id) {
-    fetch(`/movies/${id}`, {
+    fetch(`${apiUrl}/movies/${id}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
@@ -107,13 +108,13 @@ function App() {
   // Review functions and data start here:
 
   useEffect(() => {
-    fetch("/reviews")
+    fetch(`${apiUrl}/reviews`)
       .then((res) => res.json())
       .then((reviewData) => setReviews(reviewData));
   }, [movies]);
 
   function addReview(newReview) {
-    fetch("/reviews", {
+    fetch(`${apiUrl}/reviews`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -131,7 +132,7 @@ function App() {
   }
 
   function updateReview(id, reviewDataToBeUpdated) {
-    fetch(`/reviews/${id}`, {
+    fetch(`${apiUrl}/reviews/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -157,7 +158,7 @@ function App() {
   }
 
   function deleteReview(id) {
-    fetch(`/reviews/${id}`, {
+    fetch(`${apiUrl}/reviews/${id}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
@@ -177,7 +178,7 @@ function App() {
   // CartItems and Store Functions start here:
 
   useEffect(() => {
-    fetch("/cart_items").then((res) => {
+    fetch(`${apiUrl}/cart_items`).then((res) => {
       if (res.ok) {
         res.json().then((cartItemData) => setCartItems(cartItemData));
       } else if (res.status === 400) {
@@ -187,7 +188,7 @@ function App() {
   }, [user]);
 
   function addToCart(newItem) {
-    fetch("/cart_items", {
+    fetch(`${apiUrl}/cart_items`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -205,7 +206,7 @@ function App() {
   }
 
   function deleteCartItems(id) {
-    fetch(`/cart_items/${id}`, {
+    fetch(`${apiUrl}/cart_items/${id}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
@@ -225,7 +226,7 @@ function App() {
   // User Functions and data start here:
 
   useEffect(() => {
-    fetch("/check_session").then((res) => {
+    fetch(`${apiUrl}/check_session`).then((res) => {
       if (res.ok) {
         res.json().then((userData) => {
           setUser(userData);
@@ -238,7 +239,7 @@ function App() {
   }, [navigate, setUser]);
 
   function logInUser(loginData) {
-    fetch("/login", {
+    fetch(`${apiUrl}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -257,7 +258,7 @@ function App() {
   }
 
   function logOutUser() {
-    fetch("/logout", {
+    fetch(`${apiUrl}/logout`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
@@ -270,7 +271,7 @@ function App() {
   }
 
   function signUpUser(newUser) {
-    fetch("/signup", {
+    fetch(`${apiUrl}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
