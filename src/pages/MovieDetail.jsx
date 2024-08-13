@@ -16,9 +16,10 @@ function MovieDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { updateMovie, user } = useOutletContext();
+  const apiUrl = "https://webflix-flask-db.vercel.app";
 
   useEffect(() => {
-    fetch(`/movies/${id}`)
+    fetch(`${apiUrl}/movies/${id}`)
       .then((res) => res.json())
       .then((movieData) => {
         setMovie(movieData);

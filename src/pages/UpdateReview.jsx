@@ -13,9 +13,10 @@ function UpdateReview() {
   const { id } = useParams();
   const { updateReview } = useOutletContext();
   const navigate = useNavigate();
+  const apiUrl = "https://webflix-flask-db.vercel.app";
 
   useEffect(() => {
-    fetch(`/reviews/${id}`).then((res) => {
+    fetch(`${apiUrl}/reviews/${id}`).then((res) => {
       if (res.ok) {
         res.json().then((reviewData) => {
           setReview(reviewData);
