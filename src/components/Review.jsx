@@ -41,7 +41,7 @@ function Review({ review, deleteReview, current_user }) {
         <div className="detail w-full lg:pl-3">
           <div className="flex items-center justify-end w-full mb-4 mr-4">
             <h3 className="font-serif font-bold text-xl leading-9 text-gray-900 mr-10">
-              Rating: {rating} | Movie ID : {movie_id}
+              Rating: {rating}
             </h3>
             {current_user.id === user_id ? (
               <Zoom delay={200}>

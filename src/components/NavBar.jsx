@@ -71,9 +71,6 @@ function NavBar({ user, logOutUser, cartItems, searchText, onSearchText }) {
               <span className="mr-3 italic font-bold">
                 Hello, {user.username}!
               </span>
-              <span className="font-bold text-stone-300">
-                Your User ID: {user.id}
-              </span>
             </div>
           ) : null}
         </div>
