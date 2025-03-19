@@ -10,9 +10,8 @@ function App() {
   const [searchText, setSearchText] = useState("");
 
   const navigate = useNavigate();
-  // const apiUrl = import.meta.env.VITE_API_URL;
-  // console.log(apiUrl);
-  const apiUrl = "https://webflix-flask-db.vercel.app";
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   // Searchbar Functionality:
 
   const filteredMovies = movies.filter((movie) => {
